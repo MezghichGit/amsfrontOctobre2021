@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Provider } from '../entities/modeles';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ProviderService {
 
-  urlProviders = 'http://127.0.0.1:8080/providers';
+  urlProviders = environment.urlProviders;
+   //urlProviders = 'http://127.0.0.1:8086/amsApi/providers';
   provider: any;
   constructor(private Http: HttpClient) { }
   listProviders() {
@@ -25,7 +28,7 @@ export class ProviderService {
   deleteProvider(myObj: any) {
     return this.Http.delete(this.urlProviders + '/' + myObj['id'], myObj)
   }
-  getProvider(id: any) {
+  getProvider(id: any){
     return this.Http.get(this.urlProviders + '/' + id)
   }
 }
